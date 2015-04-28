@@ -1,6 +1,6 @@
 {
   "name": "sgw",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "CLI for Simple Grunt Workflow",
   "main": "bin/index.js",
   "engines": {
@@ -10,9 +10,6 @@
   "bin": {
     "sgw": "bin/index.js"
   },
-  "engines": {
-    "node": ">= 0.10"
-  },
   "author": "@csslab",
   "license": "MIT",
   "dependencies": {
@@ -21,5 +18,9 @@
     "gift": "^0.6.0",
     "path": "^0.11.14",
     "nodegit": "^0.3.3"
+  },
+  "devDependencies": {
+    "inquirer": "^0.8.2",
+    "progress": "^1.1.8"
   }
 }
