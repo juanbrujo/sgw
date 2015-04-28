@@ -21,7 +21,7 @@ $ npm install -g sgw
 Where you want to start, example, `/localhost/`:
 
 ```
-$ sgw -s projectName
+$ sgw
 ```
 
-Where `projectName` is the name of the project/folder to be created.
+And enter a name for your project; a folder will be created.
