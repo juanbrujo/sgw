@@ -13,11 +13,11 @@ program
 	.option('-s, --start [projectname]', 'Project name (required)')
 	.parse(process.argv);
 
-var questions = [
+var initQuestions = [
   {
     type: 'input',
     name: 'projectName',
-    message: 'Project name:',
+    message: 'Name for your project:',
     validate: function( value ) {
       if (value) {
         return true;
@@ -29,7 +29,8 @@ var questions = [
 ]
 
 function ask() {
-  inquirer.prompt( questions, function( answers ) {
+  console.log('\r\n╔═╗╔═╗╦ ╦\r\n╚═╗║ ╦║║║ [ Simple Grunt Workflow CLI v.' + pkg.version + ' ]\r\n╚═╝╚═╝╚╩╝\r\n');
+  inquirer.prompt( initQuestions, function( answers ) {
     var projectName = answers.projectName.toLowerCase().replace(/[^a-zA-Z0-9]/g,'_');
     if (fs.existsSync(projectName)) {
       console.log('Project name already exists; choose a new one');
@@ -51,15 +52,7 @@ cloneOptions.remoteCallbacks = {
     return git.Cred.sshKeyFromAgent(userName);
   }
   ,
-  transferProgress: function(info) {
-    var bar = new progress(':bar', { total: 10 });
-    var timer = setInterval(function () {
-      bar.tick();
-      if (bar.complete) {
-        clearInterval(timer);
-      }
-    }, 100);
-  }
+  transferProgress: function() {}
 };
 
 var errorAndAttemptOpen = function() {
@@ -67,11 +60,21 @@ var errorAndAttemptOpen = function() {
 };
 
 function getRepo(projectName){
-  console.log('╔═╗╔═╗╦ ╦\r\n╚═╗║ ╦║║║  ~~~ Simple Grunt Workflow\r\n╚═╝╚═╝╚╩╝');
+
+  console.log("\r\nCloning files from GitHub repo...");
+
+  var bar = new progress('downloading [:bar] :percent :etas', { total: 15 });
+    var timer = setInterval(function () {
+      bar.tick();
+      if (bar.complete) {
+        clearInterval(timer);
+      }
+    }, 100);
 	git.Clone("https://github.com/juanbrujo/simple-grunt-workflow", projectName, cloneOptions)
 	.catch(errorAndAttemptOpen)
   .done(function() {
-      console.log('\nReady to go! Now `$ cd ' + projectName + '` and start installing your npm and bower libs');
-      process.exit();
-  })
+    console.log('\r\nReady to go! Next steps:\r\n $ cd ' + projectName + '\r\n $ npm install\r\n $ bower install\r\n $ grunt init\r\n');
+    process.exit();
+  });
+
 }
