@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 var path      = require('path'),
-    git 		  = require('nodegit'),
-    fs  		  = require('fs'),
+    git       = require('nodegit'),
+    fs        = require('fs'),
     program   = require('commander'),
     inquirer  = require('inquirer'),
-    pkg 		  = require(path.join(__dirname, '../package.json')),
+    pkg       = require(path.join(__dirname, '../package.json')),
     progress  = require('progress');
 
 program
@@ -208,7 +208,7 @@ function customPackage(dest,css,html){
 }
 
 // generate a custom bower.json
-function customBower(dest,ie8,jquery,grid){
+function customBower(dest,jquery,ie8,grid){
   var code = '{\n';
   code+= ' "name": "' + dest + '",\n';
   code+= ' "ignore": [\n';
