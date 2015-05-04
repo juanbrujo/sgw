@@ -221,16 +221,16 @@ function customBower(dest,jquery,ie8,grid){
   code+= ' "dependencies": {\n';
   // init custom config
 
+  // jquery
+  if ( jquery === "yes" ) {
+  code+= '    "jquery": "1.11.3",\n';
+  }
   // IE8
   if ( ie8 === "yes" ) {
   code+= '    "html5shiv": "latest",\n';
   code+= '    "respond": "latest",\n';
   code+= '    "selectivizr": "latest",\n';
   code+= '    "css3pie": "latest",\n';
-  }
-  // jquery
-  if ( jquery === "yes" ) {
-  code+= '    "jquery": "1.11.3",\n';
   }
   // grid
   if ( grid === "yui3" ) {
